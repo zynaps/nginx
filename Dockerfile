@@ -1,5 +1,4 @@
 FROM alpine:latest
-LABEL maintainer="Igor Vinokurov <zynaps@zynaps.ru>"
 
 RUN \
   set -xe && \
@@ -11,7 +10,7 @@ COPY rootfs ./
 
 RUN \
   ln -sf /dev/stdout /var/log/nginx/access.log && \
-	ln -sf /dev/stderr /var/log/nginx/error.log
+  ln -sf /dev/stderr /var/log/nginx/error.log
 
 VOLUME ["/etc/nginx"]
 
