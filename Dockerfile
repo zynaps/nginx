@@ -1,13 +1,11 @@
 FROM alpine:latest
 
 RUN \
-  set -xe && \
-  apk add --no-cache nginx
+  apk add --no-cache nginx && \
+  mv /etc/nginx /etc/nginx.orig && mkdir /etc/nginx && \
+  cp /etc/nginx.orig/mime.types /etc/nginx/ && \
+  rm -rf /etc/nginx.orig
 
-WORKDIR /
-
-COPY rootfs ./
-
-EXPOSE 80/tcp
+COPY nginx.conf /etc/nginx/
 
 CMD ["nginx", "-g", "daemon off;"]
